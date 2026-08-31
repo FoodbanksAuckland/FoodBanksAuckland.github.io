@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate — Food Bank Auckland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F3ECDA;
+    --card: #EAE1C8;
+    --ink: #2B2118;
+    --ink-soft: #5B4E3D;
+    --green: #4C6B4F;
+    --green-dark: #35492F;
+    --orange: #BE6E39;
+    --gold: #E3B23C;
+    --line: #D3C49A;
+    --focus: #2B2118;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--green-dark); }
+
+  .wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header.site{
+    padding: 32px 0 0;
+  }
+  .wordmark{
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 2px;
+  }
+  .wordmark span{ color: var(--green-dark); }
+
+  .hero{
+    padding: 56px 0 8px;
+  }
+  .hero h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.3rem, 5vw, 3.2rem);
+    line-height: 1.08;
+    margin: 0 0 20px;
+    max-width: 14ch;
+  }
+  .hero p{
+    max-width: 46ch;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Amount selector */
+  .give-panel{
+    margin: 44px 0 40px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 28px 28px 24px;
+  }
+  .give-panel h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin: 0 0 4px;
+  }
+  .give-panel .sub{
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+  }
+
+  .amount-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .amount-btn{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 22px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .amount-btn:hover{ border-color: var(--green); }
+  .amount-btn:focus-visible{ outline: 3px solid var(--focus); outline-offset: 2px; }
+  .amount-btn[aria-pressed="true"]{
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: var(--paper);
+  }
+
+  .other-row{
+    margin-top: 16px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .other-row.visible{ display: flex; }
+  .other-row label{
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .other-row .field{
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .other-row .field span{
+    padding: 12px 0 12px 14px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .other-row input{
+    border: none;
+    background: transparent;
+    padding: 12px 14px 12px 4px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.05rem;
+    width: 150px;
+    color: var(--ink);
+  }
+  .other-row input:focus{ outline: none; }
+  .other-row .field:focus-within{ border-color: var(--green); }
+
+  .limit-note{
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .limit-note.error{ color: var(--orange); font-weight: 600; }
+
+  .selected-line{
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+  }
+  .selected-line .label{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .selected-line .amount{
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: var(--green-dark);
+  }
+
+  /* Two ways to give */
+  .give-methods{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+  @media (max-width: 620px){
+    .give-methods{ grid-template-columns: 1fr; }
+  }
+  .method{
+    background: var(--paper);
+    padding: 28px 26px;
+  }
+  .method h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 0 0 10px;
+  }
+  .method p{
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+
+  .paypal-btn{
+    display: inline-block;
+    background: var(--green-dark);
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 13px 22px;
+    border-radius: 6px;
+    font-size: 0.98rem;
+    transition: background 0.15s ease;
+  }
+  .paypal-btn:hover{ background: var(--green); }
+  .paypal-btn:focus-visible{ outline: 3px solid var(--focus); outline-offset: 2px; }
+
+  dl.bank-details{
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  dl.bank-details div{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  dl.bank-details div:last-child{ border-bottom: none; }
+  dl.bank-details dt{ color: var(--ink-soft); }
+  dl.bank-details dd{ margin: 0; font-weight: 600; text-align: right; }
+
+  .placeholder{
+    color: var(--orange);
+  }
+
+  footer{
+    padding: 24px 0 56px;
+    border-top: 1px solid var(--line);
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  footer a{ color: var(--ink-soft); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site wrap">
+  <a class="wordmark" href="./index.html">Food Bank <span>Auckland</span></a>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>Give kai. Give hope.</h1>
+    <p>Every donation helps stock the shelves for Auckland whānau going through a hard stretch. Pick an amount below, then give by PayPal or direct bank transfer.</p>
+  </section>
+
+  <section class="give-panel" aria-labelledby="give-heading">
+    <h2 id="give-heading">Choose an amount</h2>
+    <p class="sub">All amounts are in New Zealand dollars (NZD).</p>
+
+    <div class="amount-grid" role="group" aria-label="Preset donation amounts">
+      <button type="button" class="amount-btn" data-amount="5" aria-pressed="false">$5</button>
+      <button type="button" class="amount-btn" data-amount="10" aria-pressed="false">$10</button>
+      <button type="button" class="amount-btn" data-amount="100" aria-pressed="false">$100</button>
+      <button type="button" class="amount-btn" data-amount="1000" aria-pressed="false">$1,000</button>
+      <button type="button" class="amount-btn" id="other-btn" aria-pressed="false">Other</button>
+    </div>
+
+    <div class="other-row" id="other-row">
+      <label for="other-input">Enter your own amount</label>
+      <div class="field">
+        <span>$</span>
+        <input type="number" id="other-input" min="1" max="20000" step="1" inputmode="numeric" placeholder="e.g. 50">
+      </div>
+    </div>
+
+    <p class="limit-note" id="limit-note">Donations are capped at $20,000 NZD per transaction.</p>
+
+    <div class="selected-line">
+      <span class="label">You're giving</span>
+      <span class="amount" id="selected-amount">$0</span>
+    </div>
+  </section>
+
+  <section class="give-methods" aria-label="Ways to give">
+    <div class="method">
+      <h3>By PayPal</h3>
+      <p>Pay securely with a PayPal account, debit or credit card. No PayPal account required.</p>
+      <a class="paypal-btn" id="paypal-link" href="https://paypal.me/FoodBankAuckland" target="_blank" rel="noopener">
+        Give <span id="paypal-amount-label">via PayPal</span>
+      </a>
+    </div>
+
+    <div class="method">
+      <h3>By bank transfer</h3>
+      <p>Prefer a direct transfer? Use the details below and add your name as the reference.</p>
+      <dl class="bank-details">
+        <div>
+          <dt>Account name</dt>
+          <dd class="placeholder">Food Bank Auckland</dd>
+        </div>
+        <div>
+          <dt>Account number</dt>
+          <dd class="placeholder">00-0000-0000000-00</dd>
+        </div>
+        <div>
+          <dt>Reference</dt>
+          <dd>Your name</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p>Questions about giving? Email <a href="mailto:hello@foodbanksauckland.org">hello@foodbanksauckland.org</a> · <a href="./index.html">Back to homepage</a></p>
+</footer>
+
+<script>
+  const MAX_AMOUNT = 20000;
+  const presetButtons = document.querySelectorAll('.amount-btn[data-amount]');
+  const otherBtn = document.getElementById('other-btn');
+  const otherRow = document.getElementById('other-row');
+  const otherInput = document.getElementById('other-input');
+  const limitNote = document.getElementById('limit-note');
+  const selectedAmountEl = document.getElementById('selected-amount');
+  const paypalLink = document.getElementById('paypal-link');
+  const paypalAmountLabel = document.getElementById('paypal-amount-label');
+
+  const PAYPAL_ME_USERNAME = 'FoodBankAuckland'; // TODO: replace with your real paypal.me username
+
+  let currentAmount = 0;
+
+  function clearActive(){
+    presetButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+    otherBtn.setAttribute('aria-pressed', 'false');
+  }
+
+  function formatNZD(n){
+    return '$' + n.toLocaleString('en-NZ');
+  }
+
+  function setAmount(n, { fromOther = false } = {}){
+    let amount = Math.max(0, Math.floor(Number(n) || 0));
+    let capped = false;
+    if (amount > MAX_AMOUNT){
+      amount = MAX_AMOUNT;
+      capped = true;
+    }
+    currentAmount = amount;
+
+    selectedAmountEl.textContent = formatNZD(amount);
+
+    if (amount > 0){
+      paypalLink.href = `https://paypal.me/${PAYPAL_ME_USERNAME}/${amount}NZD`;
+      paypalAmountLabel.textContent = `${formatNZD(amount)} via PayPal`;
+    } else {
+      paypalLink.href = `https://paypal.me/${PAYPAL_ME_USERNAME}`;
+      paypalAmountLabel.textContent = 'via PayPal';
+    }
+
+    if (capped){
+      limitNote.textContent = `The maximum donation is $20,000 NZD — we've capped it there for you.`;
+      limitNote.classList.add('error');
+      if (fromOther) otherInput.value = MAX_AMOUNT;
+    } else {
+      limitNote.textContent = 'Donations are capped at $20,000 NZD per transaction.';
+      limitNote.classList.remove('error');
+    }
+  }
+
+  presetButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      clearActive();
+      btn.setAttribute('aria-pressed', 'true');
+      otherRow.classList.remove('visible');
+      setAmount(btn.dataset.amount);
+    });
+  });
+
+  otherBtn.addEventListener('click', () => {
+    clearActive();
+    otherBtn.setAttribute('aria-pressed', 'true');
+    otherRow.classList.add('visible');
+    otherInput.focus();
+    setAmount(otherInput.value);
+  });
+
+  otherInput.addEventListener('input', () => {
+    setAmount(otherInput.value, { fromOther: true });
+  });
+</script>
+
+</body>
+</html>
