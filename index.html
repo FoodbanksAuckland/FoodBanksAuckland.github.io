@@ -363,7 +363,290 @@
   Or Donate by going to foodbanksauckland.github.io/Donate.html
       </p>
     </div>
+  </section><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is a Food Bank?</title>
+<style>
+  :root {
+    --paper: #F6F1E4;
+    --ink: #26301E;
+    --harvest-green: #3F5A3D;
+    --deep-green: #26361F;
+    --wheat: #D9A441;
+    --clay: #B9542C;
+    --line: #C9BF9E;
+    --card-bg: #FFFDF6;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-weight: 700;
+    color: var(--deep-green);
+    letter-spacing: -0.01em;
+  }
+
+  .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+  a { color: var(--clay); }
+  a:focus-visible { outline: 3px solid var(--wheat); outline-offset: 2px; }
+
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    background: linear-gradient(180deg, var(--deep-green) 0%, var(--harvest-green) 100%);
+    color: var(--paper);
+    padding: 68px 0 52px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(217,164,65,0.32), transparent 70%);
+  }
+
+  header.hero h1 {
+    color: var(--paper);
+    font-size: clamp(2rem, 5vw, 3rem);
+    max-width: 15ch;
+    margin: 0 0 16px;
+    line-height: 1.1;
+  }
+
+  header.hero p.lede {
+    max-width: 52ch;
+    font-size: 1.1rem;
+    color: #E7E2CC;
+    margin: 0;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  main section {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  main section:last-of-type { border-bottom: none; }
+
+  h2 { font-size: 1.6rem; margin: 0 0 18px; }
+  h3 { font-size: 1.1rem; margin: 26px 0 8px; color: var(--clay); }
+  p { margin: 0 0 16px; max-width: 68ch; }
+  ul, ol { max-width: 66ch; padding-left: 1.2em; margin: 0 0 16px; }
+  li { margin-bottom: 8px; }
+
+  /* ---------- DEFINITION CALLOUT ---------- */
+  .definition {
+    background: var(--deep-green);
+    color: var(--paper);
+    padding: 30px 34px;
+    margin-top: 4px;
+  }
+  .definition p {
+    color: #E7E2CC;
+    font-size: 1.08rem;
+    margin-bottom: 0;
+    max-width: none;
+  }
+  .definition strong { color: var(--wheat); }
+
+  /* ---------- GRID CARDS ---------- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+  }
+  @media (max-width: 620px) { .card-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    padding: 18px 20px;
+  }
+  .card h3 { margin-top: 0; font-size: 1.02rem; }
+  .card p { font-size: 0.96rem; margin-bottom: 0; }
+
+  /* ---------- PROCESS STEPS ---------- */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+  .steps li {
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 20px;
+    max-width: 66ch;
+  }
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--wheat);
+    color: var(--deep-green);
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- WHO IT'S FOR ---------- */
+  .who-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  .who-list li {
+    padding: 12px 16px;
+    border-left: 4px solid var(--wheat);
+    background: var(--card-bg);
+    margin-bottom: 10px;
+    font-size: 0.98rem;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--deep-green);
+    color: #C9C2A0;
+    padding: 30px 0;
+    font-size: 0.86rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>What is a food bank?</h1>
+    <p class="lede">A plain-language guide to what food banks are, how they work, and who they're for.</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="definition">
+    <div class="wrap">
+      <div class="definition">
+        <p>A <strong>food bank</strong> is a community-run service — usually operated by a church, charity, or local trust — that collects donated food and gives it out, free of charge, to people who are struggling to afford groceries.</p>
+      </div>
+    </div>
   </section>
+
+  <section id="how-it-works">
+    <div class="wrap">
+      <h2>How a food bank works</h2>
+      <p>Most food banks don't work like a shop where you browse shelves. Instead, they run on a "food parcel" system:</p>
+      <ol class="steps">
+        <li><strong>You get in touch.</strong> Usually by phone, an online form, or occasionally in person, letting them know you need help.</li>
+        <li><strong>They ask a few basic questions.</strong> Typically how many people are in your household and any dietary needs — no long explanation required.</li>
+        <li><strong>They pack a food parcel.</strong> A box or bag with pantry staples like tinned food, rice, pasta, and sometimes bread, fresh produce, or meat, depending on what's been donated.</li>
+        <li><strong>You collect it.</strong> At an agreed time, often bringing some form of ID.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="where-food-comes-from">
+    <div class="wrap">
+      <h2>Where the food comes from</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Public donations</h3>
+          <p>Everyday people dropping tins and packets into collection bins at schools, churches, and workplaces.</p>
+        </div>
+        <div class="card">
+          <h3>Supermarkets</h3>
+          <p>Surplus or short-dated stock that's still perfectly good but wouldn't otherwise be sold in time.</p>
+        </div>
+        <div class="card">
+          <h3>Local businesses</h3>
+          <p>Bakeries, growers, and food producers donating extra stock rather than discarding it.</p>
+        </div>
+        <div class="card">
+          <h3>Community food drives</h3>
+          <p>Organised collection events run by schools, churches, and local groups, often around holidays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="who-its-for">
+    <div class="wrap">
+      <h2>Who food banks are for</h2>
+      <p>Food banks exist for anyone going through a period where affording groceries is genuinely difficult. That's a wider group of people than many assume:</p>
+      <ul class="who-list">
+        <li>A family hit with an unexpected bill or car repair</li>
+        <li>Someone between jobs or with reduced work hours</li>
+        <li>A person recovering from illness or injury</li>
+        <li>A student or young person managing on very little income</li>
+        <li>An older person on a fixed income facing rising costs</li>
+      </ul>
+      <p>Using a food bank isn't usually a long-term arrangement — most people use one during a rough patch and don't need to return once things stabilise.</p>
+    </div>
+  </section>
+
+  <section id="why-they-matter">
+    <div class="wrap">
+      <h2>Why food banks matter</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Fast relief</h3>
+          <p>A food parcel can often be arranged within a day or two, right when the cupboard is empty.</p>
+        </div>
+        <div class="card">
+          <h3>Frees up money for bills</h3>
+          <p>Covering groceries for a week lets families put money toward rent, power, or medical costs instead.</p>
+        </div>
+        <div class="card">
+          <h3>Reduces food waste</h3>
+          <p>Edible surplus food that would otherwise be thrown out gets redirected to people who need it.</p>
+        </div>
+        <div class="card">
+          <h3>A door to more support</h3>
+          <p>Many food banks can also point people toward budgeting help, food grants, and other local services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Food banks vary in exactly how they operate — always check with your local one directly for hours, referral requirements, and how to get in touch.</p>
+  </div>
+</footer>
+
+</body>
+</html>
 
 </main>
 
