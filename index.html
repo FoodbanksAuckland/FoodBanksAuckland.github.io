@@ -632,14 +632,465 @@
         </div>
       </div>
     </div>
-  </section>
+  </section><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Survey — Poverty & Homelessness</title>
+<style>
+  :root {
+    --paper: #F6F1E4;
+    --ink: #26301E;
+    --harvest-green: #3F5A3D;
+    --deep-green: #26361F;
+    --wheat: #D9A441;
+    --clay: #B9542C;
+    --line: #C9BF9E;
+    --card-bg: #FFFDF6;
+    --soft-green: #E8EEE9;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, legend {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-weight: 700;
+    color: var(--deep-green);
+    letter-spacing: -0.01em;
+  }
+
+  .sans, label, input, textarea, button { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+  a { color: var(--clay); }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--wheat); outline-offset: 2px; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    background: linear-gradient(180deg, var(--deep-green) 0%, var(--harvest-green) 100%);
+    color: var(--paper);
+    padding: 56px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -90px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(217,164,65,0.3), transparent 70%);
+  }
+  header.hero h1 {
+    color: var(--paper);
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    max-width: 18ch;
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  header.hero p {
+    max-width: 52ch;
+    font-size: 1.05rem;
+    color: #E7E2CC;
+    margin: 0;
+  }
+
+  /* ---------- PRIVACY NOTE ---------- */
+  .privacy-note {
+    background: var(--deep-green);
+    color: #E7E2CC;
+    font-size: 0.92rem;
+    padding: 16px 24px;
+    text-align: center;
+  }
+  .privacy-note strong { color: var(--wheat); }
+
+  /* ---------- PROGRESS BAR ---------- */
+  .progress-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px 24px 0;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    color: var(--harvest-green);
+    margin-bottom: 8px;
+  }
+  .progress-track {
+    background: var(--line);
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .progress-fill {
+    background: var(--wheat);
+    height: 100%;
+    width: 16.6%;
+    transition: width 0.3s ease;
+  }
+
+  /* ---------- FORM ---------- */
+  main { padding: 8px 0 60px; }
+
+  form { margin-top: 20px; }
+
+  .step {
+    display: none;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    padding: 32px 30px;
+  }
+  .step.active { display: block; }
+
+  legend {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    padding: 0;
+  }
+
+  .q-note {
+    font-size: 0.88rem;
+    color: var(--harvest-green);
+    margin: 0 0 18px;
+    font-style: italic;
+  }
+
+  .options label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 0.98rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .options label:hover { border-color: var(--wheat); }
+  .options input:checked + span { font-weight: 600; }
+  .options label:has(input:checked) {
+    border-color: var(--clay);
+    background: var(--soft-green);
+  }
+
+  input[type="radio"], input[type="checkbox"] {
+    accent-color: var(--clay);
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    font-size: 0.98rem;
+    font-family: inherit;
+    resize: vertical;
+  }
+  textarea:focus { border-color: var(--wheat); }
+
+  .error-msg {
+    display: none;
+    color: var(--clay);
+    font-size: 0.88rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    margin-top: 4px;
+  }
+  .error-msg.show { display: block; }
+
+  /* ---------- NAV BUTTONS ---------- */
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 12px;
+  }
+
+  .btn {
+    border: none;
+    padding: 13px 26px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary {
+    background: var(--clay);
+    color: var(--paper);
+    margin-left: auto;
+  }
+  .btn-primary:hover { background: #99441F; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--harvest-green);
+    border: 1px solid var(--line);
+  }
+  .btn-secondary:hover { border-color: var(--harvest-green); }
+  .btn-secondary:disabled { opacity: 0; pointer-events: none; }
+
+  /* ---------- THANK YOU ---------- */
+  #thankyou {
+    display: none;
+    background: var(--deep-green);
+    color: var(--paper);
+    padding: 44px 36px;
+    text-align: center;
+  }
+  #thankyou.active { display: block; }
+  #thankyou h2 { color: var(--paper); margin-bottom: 12px; }
+  #thankyou p { color: #E7E2CC; max-width: 50ch; margin: 0 auto; }
+
+  .dev-note {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--harvest-green);
+    text-align: center;
+    margin-top: 18px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--deep-green);
+    color: #C9C2A0;
+    padding: 26px 0;
+    font-size: 0.85rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Help us understand poverty and homelessness locally</h1>
+    <p>A short, anonymous survey — one question at a time. It takes about 3 minutes.</p>
+  </div>
+</header>
+
+<div class="privacy-note">
+  <strong>Anonymous.</strong> We don't collect your name or contact details. This isn't a request for help — see our food bank page if you need support right now.
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span id="stepLabel">Question 1 of 6</span>
+    <span id="stepPercent">17%</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <form id="povertySurvey" novalidate>
+
+      <div class="step active" data-step="1">
+        <fieldset>
+          <legend>Which age group are you in?</legend>
+          <div class="options">
+            <label><input type="radio" name="age" value="under18"><span>Under 18</span></label>
+            <label><input type="radio" name="age" value="18-24"><span>18–24</span></label>
+            <label><input type="radio" name="age" value="25-44"><span>25–44</span></label>
+            <label><input type="radio" name="age" value="45-64"><span>45–64</span></label>
+            <label><input type="radio" name="age" value="65plus"><span>65 or older</span></label>
+          </div>
+          <p class="error-msg">Please choose an option to continue.</p>
+        </fieldset>
+      </div>
+
+      <div class="step" data-step="2">
+        <fieldset>
+          <legend>Have you or your household ever experienced homelessness or serious housing insecurity?</legend>
+          <p class="q-note">This includes couch-surfing, living in a car, or emergency motel stays — not just sleeping rough.</p>
+          <div class="options">
+            <label><input type="radio" name="experience" value="yes"><span>Yes</span></label>
+            <label><input type="radio" name="experience" value="no"><span>No</span></label>
+            <label><input type="radio" name="experience" value="prefer-not"><span>Prefer not to say</span></label>
+          </div>
+          <p class="error-msg">Please choose an option to continue.</p>
+        </fieldset>
+      </div>
+
+      <div class="step" data-step="3">
+        <fieldset>
+          <legend>What do you think are the biggest causes of poverty in your community?</legend>
+          <p class="q-note">Select all that apply.</p>
+          <div class="options">
+            <label><input type="checkbox" name="causes" value="housing-costs"><span>High housing costs</span></label>
+            <label><input type="checkbox" name="causes" value="low-wages"><span>Low wages or unstable work</span></label>
+            <label><input type="checkbox" name="causes" value="health"><span>Health issues or disability</span></label>
+            <label><input type="checkbox" name="causes" value="family-breakdown"><span>Family breakdown or relationship changes</span></label>
+            <label><input type="checkbox" name="causes" value="lack-of-support"><span>Not enough government or community support</span></label>
+            <label><input type="checkbox" name="causes" value="addiction"><span>Addiction</span></label>
+          </div>
+          <p class="error-msg">Please select at least one option to continue.</p>
+        </fieldset>
+      </div>
+
+      <div class="step" data-step="4">
+        <fieldset>
+          <legend>Have you used, or would you consider using, community support services?</legend>
+          <p class="q-note">Food banks, shelters, budgeting help, and similar services.</p>
+          <div class="options">
+            <label><input type="radio" name="services" value="have-used"><span>Yes, I have used one</span></label>
+            <label><input type="radio" name="services" value="would-use"><span>No, but I would if needed</span></label>
+            <label><input type="radio" name="services" value="unlikely"><span>Unlikely to use one</span></label>
+            <label><input type="radio" name="services" value="unsure"><span>Not sure</span></label>
+          </div>
+          <p class="error-msg">Please choose an option to continue.</p>
+        </fieldset>
+      </div>
+
+      <div class="step" data-step="5">
+        <fieldset>
+          <legend>What would help most in your community?</legend>
+          <div class="options">
+            <label><input type="radio" name="help" value="affordable-housing"><span>More affordable housing</span></label>
+            <label><input type="radio" name="help" value="more-services"><span>More food banks / support services</span></label>
+            <label><input type="radio" name="help" value="jobs"><span>More stable job opportunities</span></label>
+            <label><input type="radio" name="help" value="mental-health"><span>Better mental health & addiction support</span></label>
+            <label><input type="radio" name="help" value="awareness"><span>More public awareness / less stigma</span></label>
+          </div>
+          <p class="error-msg">Please choose an option to continue.</p>
+        </fieldset>
+      </div>
+
+      <div class="step" data-step="6">
+        <fieldset>
+          <legend>Anything else you'd like to share?</legend>
+          <p class="q-note">Optional — your thoughts, in your own words.</p>
+          <textarea name="comments" rows="5" placeholder="Type here..."></textarea>
+        </fieldset>
+      </div>
+
+      <div class="step-nav">
+        <button type="button" class="btn btn-secondary" id="backBtn" disabled>Back</button>
+        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn" style="display:none;">Submit survey</button>
+      </div>
+
+    </form>
+
+    <div id="thankyou">
+      <h2>Thank you</h2>
+      <p>Your response has been recorded. This helps build a clearer picture of what our community actually needs.</p>
+    </div>
+
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>This survey is for general community understanding and is not a request for assistance.</p>
+  </div>
+</footer>
+
+<script>
+  const steps = Array.from(document.querySelectorAll('.step'));
+  const totalSteps = steps.length;
+  let current = 0;
+
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const stepLabel = document.getElementById('stepLabel');
+  const stepPercent = document.getElementById('stepPercent');
+  const progressFill = document.getElementById('progressFill');
+  const form = document.getElementById('povertySurvey');
+  const thankyou = document.getElementById('thankyou');
+
+  function updateUI() {
+    steps.forEach((s, i) => s.classList.toggle('active', i === current));
+    stepLabel.textContent = `Question ${current + 1} of ${totalSteps}`;
+    const pct = Math.round(((current + 1) / totalSteps) * 100);
+    stepPercent.textContent = pct + '%';
+    progressFill.style.width = pct + '%';
+    backBtn.disabled = current === 0;
+    nextBtn.style.display = current === totalSteps - 1 ? 'none' : 'inline-block';
+    submitBtn.style.display = current === totalSteps - 1 ? 'inline-block' : 'none';
+  }
+
+  function validateStep(index) {
+    const step = steps[index];
+    const errorMsg = step.querySelector('.error-msg');
+    const radios = step.querySelectorAll('input[type="radio"]');
+    const checkboxes = step.querySelectorAll('input[type="checkbox"]');
+
+    if (radios.length > 0) {
+      const checked = step.querySelector('input[type="radio"]:checked');
+      if (!checked) {
+        if (errorMsg) errorMsg.classList.add('show');
+        return false;
+      }
+    }
+    if (checkboxes.length > 0) {
+      const checked = step.querySelector('input[type="checkbox"]:checked');
+      if (!checked) {
+        if (errorMsg) errorMsg.classList.add('show');
+        return false;
+      }
+    }
+    if (errorMsg) errorMsg.classList.remove('show');
+    return true;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (!validateStep(current)) return;
+    if (current < totalSteps - 1) {
+      current++;
+      updateUI();
+    }
+  });
+
+  backBtn.addEventListener('click', () => {
+    if (current > 0) {
+      current--;
+      updateUI();
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!validateStep(current)) return;
+    form.style.display = 'none';
+    document.querySelector('.progress-wrap').style.display = 'none';
+    thankyou.classList.add('active');
+    thankyou.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  updateUI();
+</script>
+
+</body>
+</html>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <p>Food banks vary in exactly how they operate — always check with your local one directly for hours, referral requirements, and how to get in touch.</p>
-  </div>
+  
 </footer>
 
 </body>
@@ -655,3 +1106,5 @@
 
 </body>
 </html>
+  <p>Food banks vary in exactly how they operate — always check with your local one directly for hours, referral requirements, and how to get in touch.</p>
+  </div>
