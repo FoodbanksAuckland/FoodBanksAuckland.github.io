@@ -1108,3 +1108,311 @@
 </html>
   <p>Food banks vary in exactly how they operate — always check with your local one directly for hours, referral requirements, and how to get in touch.</p>
   </div>
+  </section> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Donate — Eden Church Foodbank</title>
+<style>
+  :root {
+    --paper: #F6F1E4;
+    --ink: #26301E;
+    --harvest-green: #3F5A3D;
+    --deep-green: #26361F;
+    --wheat: #D9A441;
+    --clay: #B9542C;
+    --line: #C9BF9E;
+    --card-bg: #FFFDF6;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-weight: 700;
+    color: var(--deep-green);
+    letter-spacing: -0.01em;
+  }
+
+  .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+  a { color: var(--clay); }
+  a:focus-visible { outline: 3px solid var(--wheat); outline-offset: 2px; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV ---------- */
+  nav.top {
+    background: var(--deep-green);
+    padding: 16px 0;
+  }
+  nav.top .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  nav.top .brand {
+    color: var(--paper);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+  nav.top ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+  }
+  nav.top a.navlink {
+    color: #E7E2CC;
+    text-decoration: none;
+  }
+  nav.top a.navlink:hover { color: var(--wheat); }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    background: linear-gradient(180deg, var(--deep-green) 0%, var(--harvest-green) 100%);
+    color: var(--paper);
+    padding: 60px 0 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -90px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(217,164,65,0.32), transparent 70%);
+  }
+  header.hero h1 {
+    color: var(--paper);
+    font-size: clamp(2rem, 4.8vw, 2.9rem);
+    max-width: 16ch;
+    margin: 0 0 16px;
+    line-height: 1.1;
+  }
+  header.hero p.lede {
+    max-width: 54ch;
+    font-size: 1.1rem;
+    color: #E7E2CC;
+    margin: 0;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  main section {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  main section:last-of-type { border-bottom: none; }
+
+  h2 { font-size: 1.55rem; margin: 0 0 18px; }
+  h3 { font-size: 1.08rem; margin: 22px 0 8px; color: var(--clay); }
+  p { margin: 0 0 16px; max-width: 68ch; }
+  ul { max-width: 66ch; padding-left: 1.2em; margin: 0 0 16px; }
+  li { margin-bottom: 8px; }
+
+  /* ---------- WAYS TO GIVE ---------- */
+  .give-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 24px;
+  }
+  @media (max-width: 720px) { .give-grid { grid-template-columns: 1fr; } }
+
+  .give-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    padding: 22px 22px;
+  }
+  .give-card .icon {
+    width: 42px;
+    height: 42px;
+    background: var(--deep-green);
+    color: var(--wheat);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+  }
+  .give-card h3 { margin-top: 0; font-size: 1.05rem; }
+  .give-card p { font-size: 0.96rem; margin-bottom: 0; }
+
+  /* ---------- MOST NEEDED LIST ---------- */
+  .needed-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 24px;
+    margin-top: 18px;
+    list-style: none;
+    padding: 0;
+    max-width: none;
+  }
+  @media (max-width: 560px) { .needed-list { grid-template-columns: 1fr; } }
+
+  .needed-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--card-bg);
+    border-left: 4px solid var(--wheat);
+    font-size: 0.96rem;
+    margin-bottom: 0;
+  }
+
+  .not-needed {
+    background: #F1E4DC;
+    border-left: 4px solid var(--clay);
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    margin-top: 20px;
+    max-width: 66ch;
+  }
+  .not-needed strong { color: var(--clay); }
+
+  /* ---------- DROP-OFF CALLOUT ---------- */
+  .dropoff {
+    background: var(--deep-green);
+    color: var(--paper);
+    padding: 30px 34px;
+    margin-top: 24px;
+  }
+  .dropoff .details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 0.98rem;
+    margin: 4px 0 0;
+  }
+  .dropoff .details dt { color: var(--wheat); font-weight: 600; }
+  .dropoff .details dd { margin: 0 0 10px; color: #E7E2CC; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--deep-green);
+    color: #C9C2A0;
+    padding: 30px 0;
+    font-size: 0.86rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a href="index.html" class="brand">Eden Church Foodbank</a>
+    <ul>
+      <li><a class="navlink" href="what-is-a-food-bank.html">What is a food bank?</a></li>
+      <li><a class="navlink" href="food-banks.html">Find help</a></li>
+      <li><a class="navlink" href="donate.html">Donate</a></li>
+      <li><a class="navlink" href="survey.html">Survey</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Help us support our neighbours</h1>
+    <p class="lede">Every food parcel we give out starts with a donation. Here's how you can help — with food, time, or funds.</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="ways-to-give">
+    <div class="wrap">
+      <h2>Ways to give</h2>
+      <div class="give-grid">
+        <div class="give-card">
+          <div class="icon">🥫</div>
+          <h3>Donate food</h3>
+          <p>Drop off non-perishable items during our office hours, or use a school or community collection bin near you.</p>
+        </div>
+        <div class="give-card">
+          <div class="icon">💛</div>
+          <h3>Give money</h3>
+          <p>Financial donations let us buy exactly what's short and keep fresh items like bread and produce stocked.</p>
+        </div>
+        <div class="give-card">
+          <div class="icon">🤝</div>
+          <h3>Volunteer time</h3>
+          <p>W</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="most-needed">
+    <div class="wrap">
+      <h2>Most needed items right now</h2>
+      <ul class="needed-list">
+        <li>Tinned vegetables & fruit</li>
+        <li>Rice and pasta</li>
+        <li>Tinned meat & fish</li>
+        <li>Long-life milk (UHT)</li>
+        <li>Peanut butter & spreads</li>
+        <li>Breakfast cereal</li>
+        <li>Tea, coffee, and sugar</li>
+        <li></li>
+      </ul>
+      <div class="not-needed">
+        <strong>Please note:</strong> we're unable to accept opened packaging, homemade food, or items past their expiry date. If you're ever unsure whether something's suitable to donate, it's fine to ask when you drop it off.
+      </div>
+    </div>
+  </section>
+
+  <section id="drop-off">
+    <div class="wrap">
+      <h2>Where to drop off</h2>
+      <p>Food and other donations can be brought directly to us during office hours. If you're planning a larger donation or a collection drive, it's worth calling ahead so we can make sure someone's available to receive it.</p>
+      <div class="dropoff">
+        <dl class="details">
+          <dt>Address</dt>
+          <dd>Disraeli Street, Mt Eden, Auckland</dd>
+          <dt> hours</dt>
+          <dd>Monday–Thursday, 9am–3pm</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="volunteer">
+    <div class="wrap">
+      <h2></h2>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
